@@ -3,7 +3,7 @@ import { ReturnBook } from "./ReturnBook";
 export const Carousel = () => {
   return (
     <div className="container mt-5" style={{ height: 550 }}>
-      <div className="homepage-carousel-title">
+      <div className="homepage-carousel-title text-center">
         <h3>Find your next "I stayed up too late reading" book.</h3>
       </div>
       <div
@@ -68,7 +68,6 @@ export const Carousel = () => {
         <div className="row d-flex justify-content-center align-items-center">
           <ReturnBook />
         </div>
-        s
       </div>
 
       <div className="homepage-carousel-title mt-3">
