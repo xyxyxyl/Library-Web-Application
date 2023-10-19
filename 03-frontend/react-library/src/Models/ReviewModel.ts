@@ -22,3 +22,5 @@ class ReviewModel {
     this.reviewDescription = reviewDescription;
   }
 }
+
+export default ReviewModel;

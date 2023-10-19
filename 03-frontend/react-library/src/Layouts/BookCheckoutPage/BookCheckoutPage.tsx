@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import BookModel from "../../Models/BookModel";
+import ReviewModel from "../../Models/ReviewModel";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { StarReview } from "../Utils/StarReview";
 import { CheckoutAndReviewBox } from "./CheckoutAndReviewBox";
+import { LatestReviews } from "./LatestReviews";
+import { reverse } from "dns";
 
 export const BookCheckoutPage = () => {
   const [book, setBook] = useState<BookModel>();
@@ -10,7 +13,7 @@ export const BookCheckoutPage = () => {
   const [httpError, setHttpError] = useState(null);
 
   //review state
-  const [reviews, setReviews] = useState<ReviewModel>();
+  const [reviews, setReviews] = useState<ReviewModel[]>([]);
   const [totalStars, setTotalStars] = useState(0);
   const [isLoadingReview, setIsLoadingReview] = useState(true);
 
@@ -135,6 +138,7 @@ export const BookCheckoutPage = () => {
         </div>
 
         <hr />
+        <LatestReviews reviews={reviews} bookId={book?.id} mobile={false} />
       </div>
 
       <div className="container d-lg-none mt-5">
@@ -162,6 +166,8 @@ export const BookCheckoutPage = () => {
         <CheckoutAndReviewBox book={book} mobile={true} />
 
         <hr />
+
+        <LatestReviews reviews={reviews} bookId={book?.id} mobile={true} />
       </div>
     </div>
   );
