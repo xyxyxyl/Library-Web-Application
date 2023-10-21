@@ -15,8 +15,7 @@ export const CheckoutAndReviewBox: React.FC<{
       <div className="card-body container">
         <div className="mt-3">
           <p>
-            <b>0/5</b>
-            books checked out
+            <b>0/5</b> books checked out
           </p>
           <hr />
           {props.book &&
@@ -30,11 +29,11 @@ export const CheckoutAndReviewBox: React.FC<{
 
         <div className="row">
           <p className="col-6 lead">
-            <b>{props.book?.copies}</b>
+            <b>{props.book?.copies} </b>
             Copies
           </p>
           <p className="col-6 lead">
-            <b>{props.book?.copiesAvailable}</b>
+            <b>{props.book?.copiesAvailable} </b>
             Available
           </p>
         </div>
