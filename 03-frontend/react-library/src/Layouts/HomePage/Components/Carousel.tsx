@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import BookModel from "../../../Models/BookModel";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Link } from "react-router-dom";
+import React from "react";
 
 export const Carousel = () => {
   const [books, setBooks] = useState<BookModel[]>([]);

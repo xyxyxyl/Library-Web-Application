@@ -6,6 +6,7 @@ import { StarReview } from "../Utils/StarReview";
 import { CheckoutAndReviewBox } from "./CheckoutAndReviewBox";
 import { LatestReviews } from "./LatestReviews";
 import { reverse } from "dns";
+import React from "react";
 
 export const BookCheckoutPage = () => {
   const [book, setBook] = useState<BookModel>();
