@@ -5,7 +5,39 @@ import React from "react";
 export const CheckoutAndReviewBox: React.FC<{
   book: BookModel | undefined;
   mobile: boolean;
+  currentLoansCount: number;
+  isAuthenticated: any;
+  isChekedOut: boolean;
+  chekoutBook: any;
 }> = (props) => {
+  function buttonRender() {
+    if (props.isAuthenticated) {
+      if (!props.isChekedOut && props.currentLoansCount < 5) {
+        return (
+          <button
+            onClick={() => props.chekoutBook()}
+            className="btn btn-success btn-lg"
+          >
+            Checkout
+          </button>
+        );
+      } else if (props.isChekedOut) {
+        return (
+          <p>
+            <b>Book checked out. Enjoy!</b>
+          </p>
+        );
+      } else if (!props.isChekedOut) {
+        return <p className="text-danger">Too many books cheked out.</p>;
+      }
+    }
+
+    return (
+      <Link to={"/login"} className="btn btn-success btn-lg">
+        Sign in
+      </Link>
+    );
+  }
   return (
     <div
       className={
@@ -15,7 +47,7 @@ export const CheckoutAndReviewBox: React.FC<{
       <div className="card-body container">
         <div className="mt-3">
           <p>
-            <b>0/5</b> books checked out
+            <b>{props.currentLoansCount}/5</b> books checked out
           </p>
           <hr />
           {props.book &&
@@ -37,10 +69,7 @@ export const CheckoutAndReviewBox: React.FC<{
             Available
           </p>
         </div>
-
-        <Link to="/#" className="btn btn-success btn-lg">
-          Sign in
-        </Link>
+        {buttonRender()}
         <hr />
         <p className="mt-3">
           This number can change until placing order has been complete.
