@@ -1,6 +1,6 @@
 class ReviewModel {
   id: number;
-  user_email: string;
+  userEmail: string;
   date: string;
   rating: number;
   book_id: number;
@@ -8,14 +8,14 @@ class ReviewModel {
 
   constructor(
     id: number,
-    user_email: string,
+    userEmail: string,
     date: string,
     rating: number,
     book_id: number,
     reviewDescription: string
   ) {
     this.id = id;
-    this.user_email = user_email;
+    this.userEmail = userEmail;
     this.date = date;
     this.rating = rating;
     this.book_id = book_id;
