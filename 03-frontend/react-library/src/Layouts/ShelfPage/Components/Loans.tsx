@@ -23,7 +23,7 @@ export const Loans = () => {
         const requestOptions = {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+            Authorization: `Bearer ${authState.accessToken?.accessToken}`,
             "Content-Type": "application/json",
           },
         };
@@ -31,14 +31,12 @@ export const Loans = () => {
         if (!shelfCurrentLoansResponse.ok) {
           throw new Error("Something went wrong!");
         }
-
         const shelfCurrentLoansResponseJson =
           await shelfCurrentLoansResponse.json();
         setShelfCurrentLoans(shelfCurrentLoansResponseJson);
       }
       setIsLoadingUserLoans(false);
     };
-
     fetchUserCurrentLoans().catch((error: any) => {
       setIsLoadingUserLoans(false);
       setHttpError(error.message);
@@ -77,7 +75,7 @@ export const Loans = () => {
   }
 
   async function renewLoan(bookId: number) {
-    const url = `http://localhost:8080/api/books/secure/return?bookId=${bookId}`;
+    const url = `http://localhost:8080/api/books/secure/renew/loan?bookId=${bookId}`;
     const requestOptions = {
       method: "PUT",
       headers: {
