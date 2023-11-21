@@ -1,7 +1,9 @@
 package com.luv2code.springbootlibrary.config;
 
+import com.luv2code.springbootlibrary.DAO.MessageRepository;
 import com.luv2code.springbootlibrary.DAO.ReviewRepository;
 import com.luv2code.springbootlibrary.entity.Book;
+import com.luv2code.springbootlibrary.entity.Message;
 import com.luv2code.springbootlibrary.entity.Review;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.repository.config.RepositoryConfiguration;
@@ -24,9 +26,11 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         //spring hides the primary key by default
         config.exposeIdsFor(Book.class);
         config.exposeIdsFor(Review.class);
+        config.exposeIdsFor(Message.class);
 
         disableHttpMethods(Book.class, config, theUnsupportedActions);
         disableHttpMethods(Review.class, config, theUnsupportedActions);
+        disableHttpMethods(Message.class, config, theUnsupportedActions);
 
 
         /* Configure Cors Mapping */
