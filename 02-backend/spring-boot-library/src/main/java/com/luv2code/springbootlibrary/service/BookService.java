@@ -2,10 +2,13 @@ package com.luv2code.springbootlibrary.service;
 
 import com.luv2code.springbootlibrary.DAO.BookRepository;
 import com.luv2code.springbootlibrary.DAO.CheckoutRepository;
+import com.luv2code.springbootlibrary.DAO.HistoryRepository;
 import com.luv2code.springbootlibrary.entity.Book;
 import com.luv2code.springbootlibrary.entity.Checkout;
+import com.luv2code.springbootlibrary.entity.History;
 import com.luv2code.springbootlibrary.responsemodels.ShelfCurrentLoansResponse;
 import org.hibernate.annotations.Check;
+import org.springframework.cglib.core.Local;
 import org.springframework.security.core.parameters.P;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
@@ -23,10 +26,12 @@ import java.util.concurrent.TimeUnit;
 public class BookService {
     private BookRepository bookRepository;
     private CheckoutRepository checkoutRepository;
+    private HistoryRepository historyRepository;
 
-    public BookService(BookRepository bookRepository, CheckoutRepository checkoutRepository) {
+    public BookService(BookRepository bookRepository, CheckoutRepository checkoutRepository, HistoryRepository historyRepository) {
         this.bookRepository = bookRepository;
         this.checkoutRepository = checkoutRepository;
+        this.historyRepository = historyRepository;
     }
 
     public Book checkoutBook(String userEmail, Long bookId) throws Exception {
@@ -82,7 +87,7 @@ public class BookService {
                     .filter(x -> x.getBookId() == book.getId()).findFirst();
 
             if (checkout.isPresent()) {
-                Date d1 = sdf.parse(checkout.get().getCheckoutDate());
+                Date d1 = sdf.parse(checkout.get().getReturnDate());
                 Date d2 = sdf.parse(LocalDate.now().toString());
 
                 TimeUnit time = TimeUnit.DAYS;
@@ -108,6 +113,17 @@ public class BookService {
 
         bookRepository.save(book.get());
         checkoutRepository.deleteById(validateCheckout.getId());
+
+        History history = new History(
+                userEmail,
+                validateCheckout.getCheckoutDate(),
+                LocalDate.now().toString(),
+                book.get().getTitle(),
+                book.get().getAuthor(),
+                book.get().getDescription(),
+                book.get().getImg()
+        );
+        historyRepository.save(history);
     }
 
     public void renewLoan(String userEmail, Long bookId) throws Exception {
