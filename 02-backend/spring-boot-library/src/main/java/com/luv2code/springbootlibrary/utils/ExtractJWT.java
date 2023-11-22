@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class ExtractJWT {
-    public static String payLoadJWTExtraction(String token, String extraction) {
+    public static String payloadJWTExtraction(String token, String extraction) {
         token = token.replace("Bearer ", "");
 
         String[] chunks = token.split("\\.");

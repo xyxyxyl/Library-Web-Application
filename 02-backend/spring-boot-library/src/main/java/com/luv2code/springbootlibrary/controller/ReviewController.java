@@ -19,7 +19,7 @@ public class ReviewController {
     @GetMapping("/secure/user/book")
     public Boolean reviewBookByUser(@RequestHeader(value="Authorization") String token,
                                     @RequestParam Long bookId) throws Exception {
-        String userEmail = ExtractJWT.payLoadJWTExtraction(token, "\"sub\"");
+        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
 
         if (userEmail == null) {
             throw new Exception("User email is missing");
@@ -31,7 +31,7 @@ public class ReviewController {
     @PostMapping("/secure")
     public void postReview(@RequestHeader(value="Authorization") String token,
                            @RequestBody ReviewRequest reviewRequest) throws Exception {
-        String userEmail = ExtractJWT.payLoadJWTExtraction(token, "\"sub\"");
+        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
         if (userEmail == null) {
             throw new Exception("User email is missing");
         }

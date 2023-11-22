@@ -22,7 +22,7 @@ public class MessagesController {
     @PostMapping("/secure/add/message")
     public void postMessage(@RequestHeader(value="Authorization") String token,
                             @RequestBody Message messageRequest) {
-        String userEmail = ExtractJWT.payLoadJWTExtraction(token, "\"sub\"");
+        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
         messagesService.postMessage(messageRequest, userEmail);
 
     }
@@ -30,8 +30,8 @@ public class MessagesController {
     @PutMapping("/secure/admin/message")
     public void putMessage(@RequestHeader(value="Authorization") String token,
                            @RequestBody AdminQuestionRequest adminQuestionRequest) throws Exception {
-        String userEmail = ExtractJWT.payLoadJWTExtraction(token, "\"sub\"");
-        String admin = ExtractJWT.payLoadJWTExtraction(token, "\"userType\"");
+        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
+        String admin = ExtractJWT.payloadJWTExtraction(token, "\"userType\"");
 
         if (admin == null || !admin.equals("admin")) {
             throw new Exception("Administration page only");
