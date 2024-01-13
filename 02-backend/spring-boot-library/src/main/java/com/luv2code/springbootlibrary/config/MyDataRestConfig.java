@@ -1,12 +1,10 @@
 package com.luv2code.springbootlibrary.config;
 
-import com.luv2code.springbootlibrary.DAO.MessageRepository;
-import com.luv2code.springbootlibrary.DAO.ReviewRepository;
+
 import com.luv2code.springbootlibrary.entity.Book;
 import com.luv2code.springbootlibrary.entity.Message;
 import com.luv2code.springbootlibrary.entity.Review;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.repository.config.RepositoryConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.http.HttpMethod;
