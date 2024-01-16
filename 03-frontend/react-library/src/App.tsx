@@ -14,6 +14,7 @@ import { ReviewListPage } from "./Layouts/BookCheckoutPage/ReviewListPage/Review
 import { ShelfPage } from "./Layouts/ShelfPage/ShelfPage";
 import { MessagesPage } from "./Layouts/MessagesPage/MessagesPage";
 import { ManageLibraryPage } from "./Layouts/ManageLibraryPage/ManageLibraryPage";
+import { PaymentPage } from "./Layouts/PaymentPage/PaymentPage";
 
 const oktaAuth = new OktaAuth(oktaConfig);
 
@@ -62,6 +63,9 @@ export const App = () => {
             <Route path="/login/callback" component={LoginCallback} />\
             <SecureRoute path="/shelf">
               <ShelfPage />
+            </SecureRoute>
+            <SecureRoute path="/fees">
+              <PaymentPage />
             </SecureRoute>
             <SecureRoute path="/messages">
               <MessagesPage />
