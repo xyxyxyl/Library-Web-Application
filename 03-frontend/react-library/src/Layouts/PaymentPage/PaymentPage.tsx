@@ -52,7 +52,7 @@ export const PaymentPage = () => {
       authState?.accessToken?.claims.sub
     );
 
-    const url = `https://localhost:8080/api/payment/secure/payment-intent`;
+    const url = `https://localhost:8443/api/payment/secure/payment-intent`;
     const requestOptions = {
       method: "POST",
       headers: {
@@ -87,7 +87,7 @@ export const PaymentPage = () => {
           setSubmitDisabled(false);
           alert("There was an error");
         } else {
-          const url = `https://localhost:8080/api/payment/secure/payment-complete`;
+          const url = `https://localhost:8443/api/payment/secure/payment-complete`;
           const requestOptions = {
             method: "PUT",
             headers: {
